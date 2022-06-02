@@ -1,6 +1,10 @@
 .DS_Store
+.vscode
 venv
 *pdf
 *html
 **mlruns
 *pkl
+.Rproj.user
+**ipynb_checkpoints
+*.Rproj
