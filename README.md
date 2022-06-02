@@ -1,5 +1,7 @@
 # Python and R for Data Science (O'Reilly Live Online Training)
 
+![](misc/oreilly_logo.png)
+
 ## Setup
 
 ### Python
