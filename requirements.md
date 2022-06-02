@@ -23,6 +23,7 @@ debugpy==1.6.0
 decorator==5.1.1
 defusedxml==0.7.1
 docker==5.0.3
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.3.0/en_core_web_sm-3.3.0-py3-none-any.whl
 entrypoints==0.4
 executing==0.8.3
 fastjsonschema==2.15.3
@@ -55,6 +56,7 @@ Mako==1.2.0
 MarkupSafe==2.1.1
 matplotlib==3.5.2
 matplotlib-inline==0.1.3
+missingno==0.5.1
 mistune==0.8.4
 mlflow==1.26.1
 murmurhash==1.0.7
@@ -103,6 +105,7 @@ requests==2.27.1
 scikit-image==0.19.2
 scikit-learn==1.1.1
 scipy==1.8.1
+seaborn==0.11.2
 Send2Trash==1.8.0
 six==1.16.0
 smart-open==5.2.1

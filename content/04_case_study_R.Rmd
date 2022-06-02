@@ -11,7 +11,7 @@ library(dplyr)
 ```
 
 ```{r}
-fires <- read.csv("../data/fires.csv")
+fires <- read.csv("../datasets/fires.csv")
 sample_n(fires, 10)
 ```
 
@@ -24,7 +24,6 @@ m <- leaflet() %>%
   addProviderTiles(providers$Esri.NatGeoWorldMap)
 m
 ```
-
 
 ## Data Wrangling
 
@@ -47,7 +46,6 @@ ggplot(fires, aes(x = STAT_CAUSE_DESCR)) +
   theme_minimal()
 ```
 
-
 ```{r}
 fires_subset_balanced <- fires %>%
   group_by(STAT_CAUSE_DESCR) %>%
@@ -64,5 +62,5 @@ fires_subset_balanced <- fires_subset_balanced %>%
 ```
 
 ```{r}
-write.csv(fires_subset_balanced, "../data/data_for_ml.csv", row.names = FALSE)
+write.csv(fires_subset_balanced, "../datasets/data_for_ml.csv", row.names = FALSE)
 ```

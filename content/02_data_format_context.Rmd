@@ -5,7 +5,7 @@ title: "Data Format Context"
 ## Time series data
 
 ```{r}
-ts_data_raw <- read.csv("../data/daily_temps.csv")
+ts_data_raw <- read.csv("../datasets/temps.csv")
 ```
 
 ```{r}

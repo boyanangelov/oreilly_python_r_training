@@ -40,10 +40,11 @@ You can download R from [CRAN](https://cran.r-project.org/mirrors.html). After t
 - `scikit-learn`
 - `yellowbrick`
 - `missingno`
+- `seaborn`
 - `opencv-python`
 - `scikit-image`
 - `nltk` (download data as well)
-- `spaCy`
+- `spaCy` (download model with `python -m spacy download en_core_web_sm`)
 - `flask` (optional)
 - `mlflow` (optional)
 
@@ -69,3 +70,5 @@ You can download R from [CRAN](https://cran.r-project.org/mirrors.html). After t
 - `image_000001.jpg` (flowers102 from [University of Oxford](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/))
 - `starwars.csv` (built-in from `dplyr`)
 - `temps.csv` (from [Machine Learning Mastery Github](https://github.com/jbrownlee/Datasets))
+- `quakes` (built-in from RStudio)
+- `data_for_ml.csv` (intermediate dataset for case study - processed `fires.csv`)
