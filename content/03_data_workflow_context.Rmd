@@ -1,0 +1,144 @@
+---
+title: "Data Workflow Context"
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+data(starwars)
+```
+
+
+```{r}
+head(starwars)
+```
+
+
+## EDA
+
+```{r}
+ggplot(starwars, aes(hair_color)) +
+        geom_bar() +
+        coord_flip() +
+        theme_minimal()
+```
+
+```{r}
+starwars <- filter(starwars, name != "Jabba Desilijic Tiure")
+ggplot(starwars, aes(x = height, y = mass, fill = gender)) +
+        geom_point(shape = 21, size = 5) +
+        theme_light() +
+        geom_smooth(method = "lm") +
+        labs(x = "Height (cm)", y = "Weight (cm)",
+        title = "StarWars profiles ",
+        subtitle = "Mass vs Height Comparison",
+        caption = "Source: The Star Wars API")
+```
+
+## Reporting
+
+Interactive reporting. R Shiny:
+
+
+```{r}
+library(shiny)
+
+ui <- fluidPage(
+         titlePanel("StarWars Characters"),
+         sidebarLayout(
+           sidebarPanel(
+             numericInput("height", "Minimum Height:", 0, min = 1, max = 1000),
+             numericInput("weight", "Minimum Weight:", 0, min = 1, max = 1000),
+             hr(),
+             helpText("Data from `dplyr` package.")
+             ),
+             mainPanel(
+             plotOutput("distPlot")
+         )
+       )
+)
+```
+
+```{r}
+server <- function(input, output) {
+     output$distPlot <- renderPlot({
+     starwars_filtered <- starwars %>%
+     filter(height > input$height & mass > input$weight)
+     ggplot(starwars_filtered, aes(x = height, y = mass, fill = gender)) +
+     geom_point(pch = 21, size = 5) +
+     theme_light() +
+     geom_smooth(method = "lm") +
+     labs(x = "Height", y = "Mass",
+     title = "StarWars Characters Mass vs Height Comparison",
+     subtitle = "Each dot represents a separate character",
+     caption = "Data Source: starwars (dplyr)")
+     })
+}
+```
+
+```{r}
+shinyApp(ui = ui, server = server)
+```
+
+## Data wrangling
+
+```{r}
+head(starwars)
+```
+
+### Sampling
+
+```{r}
+sample_frac(starwars, .5)
+```
+### Selecting
+
+```{r}
+starwars %>%
+  select(height, mass, birth_year)
+```
+
+
+### Filtering
+
+```{r}
+filter(starwars, height > 160, mass < 100.3)
+```
+
+### Mutating
+
+```{r}
+starwars %>% 
+  mutate(bmi = round((height / mass), 2))
+```
+
+### Grouping
+
+
+### Arranging
+
+```{r}
+arrange(starwars, desc(height))
+```
+
+
+### Summarizing
+
+
+```{r}
+starwars %>%
+  group_by(gender) %>%
+  summarize('Mean height' = mean(height, na.rm=TRUE))
+```
+
+
+### Bringing it all together
+
+```{r}
+starwars %>% 
+  mutate(bmi = round((height / mass), 2)) %>%
+  arrange(bmi) %>%
+  select(height, mass, bmi, species, gender)
+```
+

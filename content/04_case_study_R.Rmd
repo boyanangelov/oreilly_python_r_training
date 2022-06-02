@@ -1,0 +1,68 @@
+---
+title: "Case Study (R)"
+---
+
+## EDA
+
+```{r}
+library(ggplot2)
+library(leaflet)
+library(dplyr)
+```
+
+```{r}
+fires <- read.csv("../data/fires.csv")
+sample_n(fires, 10)
+```
+
+
+```{r}
+m <- leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = fires$LONGITUDE, lat = fires$LATITUDE,
+             clusterOptions = markerClusterOptions()) %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMap)
+m
+```
+
+
+## Data Wrangling
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+# plot in ggplot2
+target_table <- table(fires$STAT_CAUSE_DESCR)
+target_table
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(fires, aes(x = STAT_CAUSE_DESCR)) + 
+  geom_bar( stat = "count") + 
+  coord_flip() +
+  theme_minimal()
+```
+
+
+```{r}
+fires_subset_balanced <- fires %>%
+  group_by(STAT_CAUSE_DESCR) %>%
+  sample_n(100)
+```
+
+```{r}
+table(fires_subset_balanced$STAT_CAUSE_DESCR)
+```
+
+```{r}
+fires_subset_balanced <- fires_subset_balanced %>%
+  select(OWNER_CODE, DISCOVERY_DOY, FIRE_SIZE, LATITUDE, LONGITUDE, STAT_CAUSE_DESCR)
+```
+
+```{r}
+write.csv(fires_subset_balanced, "../data/data_for_ml.csv", row.names = FALSE)
+```
