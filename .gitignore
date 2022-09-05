@@ -6,6 +6,9 @@ venv
 **mlruns
 *pkl
 .Rproj.user
+.RData
 **ipynb_checkpoints
 *.Rproj
 *.Rhistory
+
+content/example_quarto_python_files/

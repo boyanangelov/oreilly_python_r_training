@@ -113,8 +113,6 @@ starwars %>%
   mutate(bmi = round((height / mass), 2))
 ```
 
-### Grouping
-
 
 ### Arranging
 
